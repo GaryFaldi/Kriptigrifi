@@ -113,6 +113,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Sidebar identitas kelompok
+st.sidebar.title("Kelompok 3")
+st.sidebar.markdown("""
+- Nama Anggota 1 - NIM001  
+- Nama Anggota 2 - NIM002  
+- Nama Anggota 3 - NIM003 
+- Nama Anggota 4 - NIM004 
+""")
+
 # def reset_input():
 #     if "teks_input" in st.session_state:
 #         st.session_state.teks_input = ""
