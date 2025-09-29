@@ -102,7 +102,20 @@ def super_decrypt(cipher_hex, key_caesar, key_rail, key_stream, key_block):
 # -----------------------------
 # Streamlit UI
 # -----------------------------
-st.title("🔐 Program Enkripsi dan Dekripsi Pesan")
+st.set_page_config(page_title="Program Enkripsi & Dekripsi", layout="centered")
+st.markdown(
+    """
+    <h1 style='text-align: center; color: #2E86C1; font-size:36px;'>
+        Program Enkripsi dan Dekripsi Pesan
+    </h1>
+    <hr style="border:1px solid #ccc">
+    """,
+    unsafe_allow_html=True
+)
+
+# def reset_input():
+#     if "teks_input" in st.session_state:
+#         st.session_state.teks_input = ""
 
 menu = st.sidebar.selectbox(
     "Pilih Algoritma",
@@ -110,7 +123,7 @@ menu = st.sidebar.selectbox(
 )
 
 if menu == "Caesar Cipher":
-    st.header("Caesar Cipher")
+    st.markdown("<h2 style='color:#34495E;'>Caesar Cipher</h2>", unsafe_allow_html=True)
     mode = st.radio("Mode", ["Enkripsi", "Dekripsi"])
     teks = st.text_area("Masukkan teks")
     key = st.number_input("Kunci (angka)", min_value=1, max_value=25, value=3)
@@ -119,9 +132,10 @@ if menu == "Caesar Cipher":
             st.success(caesar_cipher(teks, key, "encrypt"))
         else:
             st.success(caesar_cipher(teks, key, "decrypt"))
+        # reset_input()
 
 elif menu == "Rail Fence Cipher":
-    st.header("Rail Fence Cipher")
+    st.markdown("<h2 style='color:#34495E;'>Rail Fence Cipher</h2>", unsafe_allow_html=True)
     mode = st.radio("Mode", ["Enkripsi", "Dekripsi"])
     teks = st.text_area("Masukkan teks")
     key = st.number_input("Kunci (angka)", min_value=2, value=2)
@@ -130,9 +144,10 @@ elif menu == "Rail Fence Cipher":
             st.success(railfence_encrypt(teks, key))
         else:
             st.success(railfence_decrypt(teks, key))
+        # reset_input()
 
 elif menu == "Stream Cipher (XOR)":
-    st.header("Stream Cipher (XOR)")
+    st.markdown("<h2 style='color:#34495E;'>Stream Cipher (XOR)</h2>", unsafe_allow_html=True)
     mode = st.radio("Mode", ["Enkripsi", "Dekripsi"])
     teks = st.text_area("Masukkan teks" if mode == "Enkripsi" else "Masukkan cipher (hex)")
     key = st.text_input("Kunci (teks)")
@@ -149,9 +164,11 @@ elif menu == "Stream Cipher (XOR)":
                     st.success(plain)
                 except:
                     st.error("Format hex tidak valid")
+        # reset_input()
+        
 
 elif menu == "Block Cipher":
-    st.header("Block Cipher (Sederhana)")
+    st.markdown("<h2 style='color:#34495E;'>Block Cipher (Sederhana)</h2>", unsafe_allow_html=True)
     mode = st.radio("Mode", ["Enkripsi", "Dekripsi"])
     teks = st.text_area("Masukkan teks" if mode == "Enkripsi" else "Masukkan cipher (hex)")
     key = st.text_input("Kunci (teks)")
@@ -168,9 +185,10 @@ elif menu == "Block Cipher":
                     st.success(plain)
                 except:
                     st.error("Format hex tidak valid")
+        # reset_input()
 
 elif menu == "Super Enkripsi":
-    st.header("Super Enkripsi (Gabungan)")
+    st.markdown("<h2 style='color:#34495E;'>Super Enkripsi (Gabungan)</h2>", unsafe_allow_html=True)
     mode = st.radio("Mode", ["Enkripsi", "Dekripsi"])
     if mode == "Enkripsi":
         teks = st.text_area("Masukkan teks")
@@ -191,3 +209,5 @@ elif menu == "Super Enkripsi":
                     st.success(super_decrypt(teks, key_caesar, key_rail, key_stream, key_block))
                 except:
                     st.error("Dekripsi gagal. Periksa input atau kunci.")
+        # reset_input()
+        
